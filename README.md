@@ -10,7 +10,7 @@ This project is a 3D D20 dice roller built with React, TypeScript, Vite, Three.j
 - No camera controls for a focused user experience
 
 ## Demo
-![D20 Dice Roller Screenshot](public/vite.svg)
+(...)
 
 ## Getting Started
 
