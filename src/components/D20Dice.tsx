@@ -71,7 +71,7 @@ function D20Mesh({ groupRef }: { groupRef: React.RefObject<Group | null> }) {
                     anchorX="center"
                     anchorY="middle"
                     rotation={getFaceRotation(pos as [number, number, number])}
-                    font="/fonts/Joan/subset-Joan-Regular.woff"
+                    font="fonts/Joan/subset-Joan-Regular.woff"
                 >
                     {d20Order[i]}
                 </Text>
