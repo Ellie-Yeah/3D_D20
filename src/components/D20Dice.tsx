@@ -83,11 +83,14 @@ function D20Mesh({ groupRef }: { groupRef: React.RefObject<Group | null> }) {
 export default function D20Dice() {
     // Estado para guardar o número sorteado
     const [numero, setNumero] = useState<number | null>(null)
+    const [showDelayedText, setShowDelayedText] = useState(false);
     // Ref para acessar o grupo 3D do dado
     const groupRef = useRef<Group | null>(null)
 
     // Função chamada ao clicar no botão para rolar o dado
     function rolarDado() {
+        setShowDelayedText(false); // Oculta o resultado anterior
+
         const sorteado = Math.floor(Math.random() * 20) + 1
         setNumero(sorteado)
         const rot = getRotationToFace(sorteado - 1)
@@ -99,13 +102,13 @@ export default function D20Dice() {
                 z: rot[2] + Math.PI * 6,
                 duration: 2,
                 ease: 'power2.out',
-                onUpdate: () => {},
                 onComplete: () => {
                     if (groupRef.current) {
                         groupRef.current.rotation.x = rot[0]
                         groupRef.current.rotation.y = rot[1]
                         groupRef.current.rotation.z = rot[2]
                     }
+                    setShowDelayedText(true); // Mostra o resultado após a animação
                 }
             })
         }
@@ -122,13 +125,14 @@ export default function D20Dice() {
                 <OrbitControls />
             </Canvas>
             {/* Botão para rolar o dado e mostrar o resultado */}
-            <div style={{ position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column-reverse', alignItems: 'center' }}>
                 <button onClick={rolarDado} style={{ fontWeight: 'bold', padding: '12px 32px', fontSize: '1.2rem', borderRadius: 8, background: '#750000', color: 'white', border: 'none', cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>
                     Roll the Dice
                 </button>
-                {numero !== null && (
-                    <div style={{ marginLeft: 20, fontSize: '1.5rem', color: 'white', textAlign: 'center', alignSelf: 'center' }}>
-                        Result: {numero}
+                {showDelayedText && numero !== null && (
+                    <div style={{ marginBottom: 20, fontSize: '1.5rem', color: 'white', textAlign: 'center' }}>
+                        You rolled a:
+                        <br /> {numero}
                     </div>
                 )}
             </div>
