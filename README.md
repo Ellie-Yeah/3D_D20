@@ -1,3 +1,62 @@
+# D20 3D Dice Roller
+
+This project is a 3D D20 dice roller built with React, TypeScript, Vite, Three.js, and GSAP. The dice is rendered in real-time using @react-three/fiber and @react-three/drei, and animates a realistic roll to a random face when the user clicks the button. The numbers use a custom Joan font subset for optimal performance.
+
+## Features
+- 3D interactive D20 dice rendered with Three.js primitives
+- Realistic roll animation using GSAP
+- Custom font for dice numbers (subsetted for minimal size)
+- Responsive and lightweight (optimized assets and bundle)
+- No camera controls for a focused user experience
+
+## Demo
+![D20 Dice Roller Screenshot](public/vite.svg)
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18 or newer recommended)
+- npm
+
+### Install dependencies
+```sh
+npm install
+```
+
+### Run in development
+```sh
+npm run dev
+```
+
+### Build for production
+```sh
+npm run build
+```
+
+### Preview production build
+```sh
+npm run preview
+```
+
+## Project Structure
+- `src/components/D20Dice.tsx` — Main 3D dice component
+- `public/fonts/Joan/Joan-Regular.woff` — Custom font (subset, only numbers)
+- `public/` — Static assets
+
+## Optimization Tips
+- The Joan font is subsetted to only include numbers, reducing font size to ~25KB.
+- Unused libraries and controls (like OrbitControls) have been removed for a smaller bundle.
+- For further optimization, analyze the production build with [vite-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer).
+
+## Dependencies
+- [React](https://react.dev/)
+- [Three.js](https://threejs.org/)
+- [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
+- [@react-three/drei](https://docs.pmnd.rs/drei/introduction)
+- [GSAP](https://greensock.com/gsap/)
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
